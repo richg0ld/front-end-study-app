@@ -6,6 +6,13 @@
     <label>name: </label>
     <input [(ngModel)]="student.name" placeholder="name" />
   </div>
+  <form #f="ngForm">
+     <label for="yet">아직요~</label><input id="yet" type="radio" value=0 name="food" [(ngModel)]="student.complete">
+     <label for="almost">거의다함</label><input id="almost" type="radio" value=1 name="food" [(ngModel)]="student.complete">
+     <label for="complete">다함요~</label><input id="complete" type="radio" value=2 name="food" [(ngModel)]="student.complete">
+  </form>
+  <p>Form value: {{ f.value | json }}</p>
+  <p>Complete value: {{ student.complete }}</p>
   <button (click)="save()">Save</button>
   <button (click)="goBack()">Back</button>
 </div>

@@ -8,7 +8,8 @@ import { Student } from './student';
 @Injectable()
 export class StudentService {
 
-  private studentsUrl = 'api/students';
+  // private studentsUrl = 'api/students';
+  private studentsUrl = 'http://127.0.0.1:3000/api/data';
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http){}
@@ -18,7 +19,10 @@ export class StudentService {
     return this.http
       .put(url, JSON.stringify(student), {headers: this.headers})
       .toPromise()
-      .then(() => student)
+      .then((res) => {
+        console.log("res : ", res);
+        return student
+      })
       .catch(this.handleError);
   }
 
@@ -26,11 +30,7 @@ export class StudentService {
     return this.http
       .post(this.studentsUrl, JSON.stringify({name: name}), {headers: this.headers})
       .toPromise()
-      .then(res =>{
-        console.log(res);
-        return res.json().data;
-
-      } )
+      .then(res => res.json() )
       .catch(this.handleError);
   }
 
@@ -45,7 +45,7 @@ export class StudentService {
   getStudents(): Promise<Student[]> {
     return this.http.get(this.studentsUrl)
       .toPromise()
-      .then(response => response.json().data as Student[])
+      .then(response => response.json() as Student[])
       .catch(this.handleError);
   }
 
@@ -53,7 +53,7 @@ export class StudentService {
     const url = `${this.studentsUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as Student)
+      .then(response => response.json() as Student)
       .catch(this.handleError);
   }
 

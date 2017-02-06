@@ -10,7 +10,8 @@
   <li *ngFor="let student of students"
       [class.selected]="student === selectedStudent"
       (click)="onSelect(student)">
-    <span class="badge">{{student.id}}</span> {{student.name}}
+    <!--<span class="badge">{{student.complete}}</span> {{student.name}}-->
+    <span [ngClass]="{yet: student.complete === 0, almost: student.complete === 1, complete: student.complete === 2}">{{student.id}}</span> {{student.name}}
     <button class="delete" (click)="delete(student); $event.stopPropagation()">x</button>
   </li>
 </ul>

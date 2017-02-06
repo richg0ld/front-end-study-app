@@ -9,8 +9,8 @@ import { MaterialModule } from '@angular/material';
 
 import { AppRoutingModule }     from './app-routing.module';
 
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService }  from './in-memory-data.service';
 
 import { AppComponent } from './app.component';
 import { StudentDetailComponent } from './student-detail.component';
@@ -35,7 +35,7 @@ import { StudentService } from './student.service';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    // InMemoryWebApiModule.forRoot(InMemoryDataService),
     MaterialModule.forRoot()
   ],
   providers: [StudentService],

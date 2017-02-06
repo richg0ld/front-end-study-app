@@ -1,6 +1,6 @@
 label {
   display: inline-block;
-  width: 3em;
+  width: 4em;
   margin: .5em 0;
   color: #607D8B;
   font-weight: bold;
@@ -9,6 +9,10 @@ input {
   height: 2em;
   font-size: 1em;
   padding-left: .4em;
+}
+input[type="radio"]{
+  margin: .5em 1em .5em .5em;
+  height: auto;
 }
 button {
   margin-top: 20px;

@@ -16,6 +16,9 @@ export class DashboardComponent implements OnInit {
   constructor(private studentService: StudentService){ }
 
   ngOnInit(): void {
-    this.studentService.getStudents().then(students => this.students = students.slice(1, 5));
+    this.studentService.getStudents().then(students => {
+      console.log(students);
+      this.students = students.slice(1, 5);
+    });
   }
 }
