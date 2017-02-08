@@ -7,9 +7,9 @@
     <input [(ngModel)]="student.name" placeholder="name" />
   </div>
   <form #f="ngForm">
-     <label for="yet">아직요~</label><input id="yet" type="radio" value=0 name="food" [(ngModel)]="student.complete">
-     <label for="almost">거의다함</label><input id="almost" type="radio" value=1 name="food" [(ngModel)]="student.complete">
-     <label for="complete">다함요~</label><input id="complete" type="radio" value=2 name="food" [(ngModel)]="student.complete">
+     <label for="yet">아직요~</label><input id="yet" type="radio" value="0" name="complete" [(ngModel)]="student.complete">
+     <label for="ing">거의다함</label><input id="ing" type="radio" value="1" name="complete" [(ngModel)]="student.complete">
+     <label for="complete">다함요~</label><input id="complete" type="radio" value="2" name="complete" [(ngModel)]="student.complete">
   </form>
   <p>Form value: {{ f.value | json }}</p>
   <p>Complete value: {{ student.complete }}</p>

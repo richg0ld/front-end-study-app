@@ -1,9 +1,15 @@
 <h3>Top Students</h3>
-<div class="grid grid-pad">
+<div class="grid grid-pad clearFix">
+  <div *ngIf="students.length === 0">아직 순위권에 아무도 없습니다.</div>
   <a *ngFor="let student of students"  [routerLink]="['/detail', student.id]"  class="col-1-3">
     <div class="module student">
       <h4>{{student.name}}</h4>
     </div>
   </a>
 </div>
-<student-search></student-search>
+<ul>
+  <li>미완료 : {{yet}}</li>
+  <li>작업중 : {{ing}}</li>
+  <li>완료 : {{comp}}</li>
+</ul>
+<!--<student-search></student-search>-->

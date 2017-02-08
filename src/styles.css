@@ -24,3 +24,11 @@ body, input[text], button {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+.clearFix{
+  zoom:1;
+}
+.clearFix:after{
+  clear:both;
+  display:block;
+  content:'';
+}
