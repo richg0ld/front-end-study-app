@@ -26,6 +26,7 @@ app.use(cors(corsOptions));
 
 // let result = [];
 let idNum = 0;
+let rank = 1;
 let result = [
   {id: 44, name: '코마', complete: 0},
   {id: 55, name: '욱', complete: 0},
@@ -55,7 +56,11 @@ app.put('/api/data/:id', (req, res)=> {
   result.forEach((v, i)=>{
     if( Number(v.id) === Number(req.body.id) ){
       result[i].name = req.body.name;
+      if( (result[i].complete === 0 || result[i].complete === 1) && Number(req.body.complete) === 2 ){
+        result[i].rank = rank++;
+      }
       result[i].complete = Number(req.body.complete);
+      console.log(result);
     }
   });
   res.send('ok');

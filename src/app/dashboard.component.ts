@@ -17,8 +17,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.studentService.getStudents().then(students => {
-      console.log(students);
-      this.students = students.slice(1, 5);
+      this.students = students.filter(student=> student.rank).slice(0, 3);
+      console.log(this.students);
     });
   }
 }
