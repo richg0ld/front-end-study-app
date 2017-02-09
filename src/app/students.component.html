@@ -1,16 +1,9 @@
 <h1>{{title}}</h1>
 <h2>My Students</h2>
-<div>
-  <label>Student name:</label> <input #studentName />
-  <button (click)="add(studentName.value); studentName.value=''">
-    Add
-  </button>
-</div>
 <ul class="students">
   <li *ngFor="let student of students"
       [class.selected]="student === selectedStudent"
       (click)="onSelect(student)">
-    <!--<span class="badge">{{student.complete}}</span> {{student.name}}-->
     <span [ngClass]="{yet: student.complete === 0, almost: student.complete === 1, complete: student.complete === 2}">{{student.id}}</span> {{student.name}}
     <button class="delete" (click)="delete(student); $event.stopPropagation()">x</button>
   </li>

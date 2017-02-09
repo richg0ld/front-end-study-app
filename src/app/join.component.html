@@ -1,0 +1,9 @@
+<div>
+  <h2>Study Join</h2>
+  <div>
+    <label>Student name:</label> <input #studentName />
+    <button (click)="add(studentName.value); studentName.value=''">
+      Add
+    </button>
+  </div>
+</div>

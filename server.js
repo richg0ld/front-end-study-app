@@ -12,7 +12,8 @@ const originsWhitelist = [
   'http://localhost:4200',
   'http://localhost:4200/students',
   'http://localhost:4200/dashboard',
-  'http://localhost:4200/detail/:id'
+  'http://localhost:4200/detail/:id',
+  'http://localhost:4200/join',
 ];
 const corsOptions = {
   origin: (origin, callback)=>{
@@ -24,10 +25,11 @@ const corsOptions = {
 app.use(cors(corsOptions));
 // E: CORS Solution
 
-// let result = [];
-let idNum = 0;
+// let students = [];
+let idNum = 1;
 let rank = 1;
-let result = [
+let teacher = {name:'', ip:''};
+let students = [
   {id: 44, name: '코마', complete: 0},
   {id: 55, name: '욱', complete: 0},
   {id: 66, name: 'CHRIS', complete: 0},
@@ -40,30 +42,36 @@ let result = [
   {id: 67, name: 'ㅋㅋㅋ', complete: 0}
 ];
 
-app.get('/api/data', (req, res) => res.send(result));
-app.get('/api/data/:id', (req, res) =>  res.send(result.find( obj => Number(obj.id) === Number(req.params.id))));
-// app.post('/api/data', (req, res)=> result.push(req.body.name));
+app.get('/api/data', (req, res) => res.send(students));
+
+app.get('/api/data/:id', (req, res) => res.send(req.params.id === 'admin'?  teacher : students.find( obj => Number(obj.id) === Number(req.params.id))));
+
 app.post('/api/data', (req, res)=> {
-  let newStudent = {
-    id: idNum++,
-    name: req.body.name,
-    complete: 0
-  };
-  result.push(newStudent);
-  res.send(newStudent);
+  let newData = req.body.name === 'admin' ? {
+      name: req.body.name,
+      ip: req.body.ip
+    } : {
+      id: idNum++,
+      name: req.body.name,
+      complete: 0,
+      ip: req.body.ip
+    };
+  newData.id ? students.push(newData) : teacher = newData;
+  res.send(newData);
 });
+
 app.put('/api/data/:id', (req, res)=> {
-  result.forEach((v, i)=>{
+  students.forEach((v, i)=>{
     if( Number(v.id) === Number(req.body.id) ){
-      result[i].name = req.body.name;
-      if( (result[i].complete === 0 || result[i].complete === 1) && Number(req.body.complete) === 2 ){
-        result[i].rank = rank++;
+      students[i].name = req.body.name;
+      if( (students[i].complete === 0 || students[i].complete === 1) && Number(req.body.complete) === 2 ){
+        students[i].rank = rank++;
       }
-      result[i].complete = Number(req.body.complete);
-      console.log(result);
+      students[i].complete = Number(req.body.complete);
     }
   });
   res.send('ok');
 });
+
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
 

@@ -8,27 +8,23 @@ import { Student } from './student';
 @Injectable()
 export class StudentService {
 
-  // private studentsUrl = 'api/students';
   private studentsUrl = 'http://127.0.0.1:3000/api/data';
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http){}
+  constructor(private http: Http){  }
 
   update(student: Student): Promise<Student> {
     const url = `${this.studentsUrl}/${student.id}`;
     return this.http
       .put(url, JSON.stringify(student), {headers: this.headers})
       .toPromise()
-      .then((res) => {
-        console.log("res : ", res);
-        return student
-      })
+      .then((res) => student)
       .catch(this.handleError);
   }
 
-  create(name: string): Promise<Student> {
+  create(name: string, ip: string): Promise<Student> {
     return this.http
-      .post(this.studentsUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .post(this.studentsUrl, JSON.stringify({name: name, ip: ip}), {headers: this.headers})
       .toPromise()
       .then(res => res.json() )
       .catch(this.handleError);
@@ -63,7 +59,7 @@ export class StudentService {
     });
   }
 
-  getIp(){
+  getIp(): Promise<string>{
     return this.http.get('//ipinfo.io/json')
     .toPromise()
     .then(response => response.json().ip);

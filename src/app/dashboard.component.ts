@@ -19,7 +19,6 @@ export class DashboardComponent implements OnInit {
   constructor(private studentService: StudentService){ }
 
   ngOnInit(): void {
-    this.studentService.getIp().then(ip=> console.log(ip));
     this.studentService.getStudents().then(students => {
       this.students = students.filter(student => student.rank).sort((a,b) => a.rank - b.rank).slice(0, 3);
       students.forEach(v=>{
@@ -30,6 +29,7 @@ export class DashboardComponent implements OnInit {
             break;
           case 2: this.comp++;
             break;
+          default: break;
         }
       });
     });

@@ -11,8 +11,6 @@
      <label for="ing">거의다함</label><input id="ing" type="radio" value="1" name="complete" [(ngModel)]="student.complete">
      <label for="complete">다함요~</label><input id="complete" type="radio" value="2" name="complete" [(ngModel)]="student.complete">
   </form>
-  <p>Form value: {{ f.value | json }}</p>
-  <p>Complete value: {{ student.complete }}</p>
   <button (click)="save()">Save</button>
   <button (click)="goBack()">Back</button>
 </div>

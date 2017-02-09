@@ -18,8 +18,11 @@ import { StudentsComponent } from './students.component';
 import { StudentSearchComponent } from "./student-search.component";
 import { DashboardComponent } from "./dashboard.component";
 import { MaterialTestComponent } from './material-test.component';
+import {JoinComponent} from "./join.component";
 
 import { StudentService } from './student.service';
+import { TeacherService } from './teacher.service';
+
 
 @NgModule({
   declarations: [
@@ -28,17 +31,19 @@ import { StudentService } from './student.service';
     StudentsComponent,
     DashboardComponent,
     StudentSearchComponent,
-    MaterialTestComponent
+    MaterialTestComponent,
+    JoinComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
+
     // InMemoryWebApiModule.forRoot(InMemoryDataService),
     MaterialModule.forRoot()
   ],
-  providers: [StudentService],
+  providers: [StudentService, TeacherService],
   bootstrap: [AppComponent]
 })
 
