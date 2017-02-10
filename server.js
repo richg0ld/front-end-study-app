@@ -1,20 +1,22 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
-const cors = require('cors'); //add
+const cors = require('cors');
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+// app.use(express.static('dist'));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // S: CORS Solution
-const originsWhitelist = [
-  'http://localhost:4200',
-  'http://localhost:4200/students',
-  'http://localhost:4200/dashboard',
-  'http://localhost:4200/detail/:id',
-  'http://localhost:4200/join',
-];
+const DOMAIN = 'http://127.0.0.1:4200';
+// const DOMAIN = 'http://127.0.0.1:8080';
+// const DOMAIN = 'https://richg0ld.firebaseapp.com';
+const ROUTES = ['', '/students', '/dashboard', '/detail/:id', '/join'];
+const originsWhitelist = ROUTES.map(route=> DOMAIN + route);
+console.log(originsWhitelist);
+
 const corsOptions = {
   origin: (origin, callback)=>{
     const isWhitelisted = originsWhitelist.indexOf(origin) !== -1;

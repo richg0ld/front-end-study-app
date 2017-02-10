@@ -19,7 +19,7 @@ export class JoinComponent implements OnInit {
     private teacherService: TeacherService){  }
 
   ngOnInit(): void{
-    this.studentService.getIp().then(ip => this.ip = ip);
+    this.teacherService.getIp().then(ip => this.ip = ip);
   }
 
   add(name: string): void {

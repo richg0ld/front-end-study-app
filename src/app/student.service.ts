@@ -59,12 +59,6 @@ export class StudentService {
     });
   }
 
-  getIp(): Promise<string>{
-    return this.http.get('//ipinfo.io/json')
-    .toPromise()
-    .then(response => response.json().ip);
-  }
-
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);

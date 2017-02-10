@@ -7,7 +7,7 @@ import {DashboardComponent} from "./dashboard.component";
 import {JoinComponent} from "./join.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/students', pathMatch: 'full' },
+  { path: '', redirectTo: 'students', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: StudentDetailComponent },
   { path: 'students', component: StudentsComponent },
