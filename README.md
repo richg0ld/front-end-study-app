@@ -1,30 +1,15 @@
 # FrontEndStudyApp
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.30.
+아직 테스트 단계이지만.. 확인 하실 분들을 위해 사용법 설명해드립니다.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## 사용법
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to GitHub Pages
-
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
+1. `git checkout jhkim` 브랜치 위치를 옮긴다.
+2. `git install` 노드모듈 설치 ㄱㄱ.
+3. `node server.js` 로 서버를 띄운다.
+4. `npm start` 앵2 개발용으로 실행한다.
+5. 첫페이지에서 사용자 이름은 `admin`으로 추가 한다.
+6. 신나게 지지고 볶아본다.
 
 ## Further help
 
