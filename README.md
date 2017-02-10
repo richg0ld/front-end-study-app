@@ -5,7 +5,7 @@
 ## 사용법
 
 1. `git checkout jhkim` 브랜치 위치를 옮긴다.
-2. `git install` 노드모듈 설치 ㄱㄱ.
+2. `npm install` 노드모듈 설치 ㄱㄱ.
 3. `node server.js` 로 서버를 띄운다.
 4. `npm start` 앵2 개발용으로 실행한다.
 5. 첫페이지에서 사용자 이름은 `admin`으로 추가 한다.
