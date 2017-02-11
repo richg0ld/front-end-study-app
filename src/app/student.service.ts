@@ -32,6 +32,7 @@ export class StudentService {
 
   delete(id: number): Promise<void> {
     const url = `${this.studentsUrl}/${id}`;
+    console.log(url);
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)

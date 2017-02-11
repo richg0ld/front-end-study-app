@@ -15,11 +15,13 @@ export class DashboardComponent implements OnInit {
   yet: number = 0;
   ing: number = 0;
   comp: number = 0;
+  all: number = 0;
 
   constructor(private studentService: StudentService){ }
 
   ngOnInit(): void {
     this.studentService.getStudents().then(students => {
+      this.all = students.length;
       this.students = students.filter(student => student.rank).sort((a,b) => a.rank - b.rank).slice(0, 3);
       students.forEach(v=>{
         switch(v.complete){

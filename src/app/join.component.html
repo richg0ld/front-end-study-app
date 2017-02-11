@@ -1,9 +1,7 @@
 <div>
   <h2>Study Join</h2>
-  <div>
-    <label>Student name:</label> <input #studentName />
-    <button (click)="add(studentName.value); studentName.value=''">
-      Add
-    </button>
-  </div>
+  <md-input-container class="join-input-full-width">
+    <input md-input placeholder="Student name" #studentName >
+  </md-input-container>
+  <button md-raised-button color="accent" (click)="add(studentName.value); studentName.value=''">Add</button>
 </div>

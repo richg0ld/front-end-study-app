@@ -1,15 +1,44 @@
 <h3>Top Students</h3>
 <div class="grid grid-pad clearFix">
-  <div *ngIf="students.length === 0">아직 순위권에 아무도 없습니다.</div>
-  <a *ngFor="let student of students"  [routerLink]="['/detail', student.id]"  class="col-1-3">
-    <div class="module student">
-      <h4>{{student.name}}</h4>
-    </div>
-  </a>
+
+  <md-card>
+    <div *ngIf="students.length === 0">아직 순위권에 아무도 없습니다.</div>
+    <button md-raised-button *ngFor="let student of students"
+            color="accent"
+            md-tooltip="{{student.rank}}등!"
+            ngClass="col-1-3"
+            [routerLink]="['/detail', student.id]" >
+            <h4>{{student.name}}</h4>
+    </button>
+  </md-card>
 </div>
-<ul>
-  <li>미완료 : {{yet}}</li>
-  <li>작업중 : {{ing}}</li>
-  <li>완료 : {{comp}}</li>
-</ul>
+<h3>진행률</h3>
+<label>
+  완료 - {{comp}}명
+  <md-progress-bar
+    class="app-progress"
+    color="primary"
+    mode="determinate"
+    value="{{comp / all * 100}}"
+    aria-label="완료 인원"></md-progress-bar>
+</label>
+<label>
+  작업중 - {{ing}}명
+  <md-progress-bar
+    class="app-progress"
+    color="accent"
+    mode="determinate"
+    value="{{ing / all * 100}}"
+    aria-label="작업중인 인원"></md-progress-bar>
+</label>
+<label>
+  미완료 - {{yet}}명
+  <md-progress-bar
+    class="app-progress"
+    color="warn"
+    mode="determinate"
+    value="{{yet / all * 100}}"
+    aria-label="미완료 인원"></md-progress-bar>
+</label>
+<h4>총 인원 : {{all}}명</h4>
 <!--<student-search></student-search>-->

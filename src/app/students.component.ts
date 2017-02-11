@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Optional} from '@angular/core';
 import {Router} from "@angular/router";
+import {MdDialog, MdDialogRef} from '@angular/material';
 import {StudentService} from "./student.service";
 import {Student} from "./student";
 
@@ -12,8 +13,10 @@ import {Student} from "./student";
 export class StudentsComponent implements OnInit {
   students: Student[];
   selectedStudent: Student;
+  lastDialogResult: string;
 
   constructor(
+    private mdDialog: MdDialog,
     private router: Router,
     private studentService: StudentService) { }
 
@@ -27,6 +30,15 @@ export class StudentsComponent implements OnInit {
 
   onSelect(student: Student): void {
     this.selectedStudent = student;
+
+    let dialogRef = this.mdDialog.open(DialogContent);
+
+    dialogRef.componentInstance.id = student.id;
+    dialogRef.componentInstance.name = student.name;
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.lastDialogResult = result;
+    })
   }
 
   gotoDetail(): void {
@@ -40,5 +52,29 @@ export class StudentsComponent implements OnInit {
       this.students = this.students.filter(h => h !== student);
       if (this.selectedStudent === student) { this.selectedStudent = null; }
     });
+  }
+}
+
+@Component({
+  template: `
+    <div>
+      <h2>
+        {{name | uppercase}} is my student
+      </h2>
+      <button md-button (click)="gotoDetail()">View Details</button>
+    </div>
+  `,
+})
+export class DialogContent {
+
+  id: number;
+  name: string;
+
+  constructor(private router: Router,
+    @Optional() public dialogRef: MdDialogRef<DialogContent>) { }
+
+  gotoDetail(): void {
+    this.dialogRef.close();
+    this.router.navigate(['/detail', this.id]);
   }
 }

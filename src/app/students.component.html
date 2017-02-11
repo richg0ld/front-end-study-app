@@ -1,16 +1,14 @@
-<h1>{{title}}</h1>
-<h2>My Students</h2>
-<ul class="students">
-  <li *ngFor="let student of students"
-      [class.selected]="student === selectedStudent"
-      (click)="onSelect(student)">
-    <span [ngClass]="{yet: student.complete === 0, almost: student.complete === 1, complete: student.complete === 2}">{{student.id}}</span> {{student.name}}
-    <button class="delete" (click)="delete(student); $event.stopPropagation()">x</button>
-  </li>
-</ul>
-<div *ngIf="selectedStudent">
-  <h2>
-    {{selectedStudent.name | uppercase}} is my student
-  </h2>
-  <button (click)="gotoDetail()">View Details</button>
-</div>
+<h3>My Students</h3>
+<md-list>
+  <h3 md-subheader>List</h3>
+  <md-list-item *ngFor="let student of students"
+                [class.selected]="student === selectedStudent"
+                (click)="onSelect(student)">
+    <md-icon md-list-avatar [ngClass]="{yet: student.complete === 0, almost: student.complete === 1, complete: student.complete === 2}">{{student.id}}</md-icon>
+    <h4 md-line>{{student.name}}</h4>
+    <button md-button (click)="delete(student); $event.stopPropagation()">
+      <md-icon>close</md-icon>
+    </button>
+  </md-list-item>
+</md-list>
+<md-divider></md-divider>

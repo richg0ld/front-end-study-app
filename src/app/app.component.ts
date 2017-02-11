@@ -11,8 +11,10 @@ import {TeacherService} from './teacher.service';
 })
 
 export class AppComponent implements OnInit {
+
   title = 'Front end Study';
   areYouTeacher: boolean;
+  computerIp: string; //test용
 
   constructor(
     private studentService: StudentService,
@@ -22,6 +24,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void{
     this.teacherService.getIp().then(ip=>{
       this.teacherService.getTeacher().then(teacher=> {
+        this.computerIp = ip;
+        console.log(this.computerIp);
         this.areYouTeacher = teacher.ip === ip;
         if(this.areYouTeacher){ return this.router.navigate(['/dashboard']); }
         this.studentService.getStudents().then(students=>{

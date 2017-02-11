@@ -4,16 +4,15 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
+const DOMAIN = 'http://127.0.0.1:4200';
+const ROUTES = ['', '/students', '/dashboard', '/detail/:id', '/join'];
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.static('dist'));
-app.use(express.static(path.join(__dirname, 'dist')));
+ROUTES.forEach(route=> app.use(route, express.static(path.join(__dirname, 'dist'))) );
 
-// S: CORS Solution
-const DOMAIN = 'http://127.0.0.1:4200';
-// const DOMAIN = 'http://127.0.0.1:8080';
-// const DOMAIN = 'https://richg0ld.firebaseapp.com';
-const ROUTES = ['', '/students', '/dashboard', '/detail/:id', '/join'];
+
+// S: CORS Solution for dev
 const originsWhitelist = ROUTES.map(route=> DOMAIN + route);
 console.log(originsWhitelist);
 
@@ -25,7 +24,7 @@ const corsOptions = {
   credentials:true
 };
 app.use(cors(corsOptions));
-// E: CORS Solution
+// E: CORS Solution for dev
 
 // let students = [];
 let idNum = 1;
@@ -46,7 +45,7 @@ let students = [
 
 app.get('/api/data', (req, res) => res.send(students));
 
-app.get('/api/data/:id', (req, res) => res.send(req.params.id === 'admin'?  teacher : students.find( obj => Number(obj.id) === Number(req.params.id))));
+app.get('/api/data/:id', (req, res) => res.send(req.params.id === 'admin'?  teacher : students.find( obj => +obj.id === +req.params.id)));
 
 app.post('/api/data', (req, res)=> {
   let newData = req.body.name === 'admin' ? {
@@ -62,11 +61,16 @@ app.post('/api/data', (req, res)=> {
   res.send(newData);
 });
 
+app.delete('/api/data/:id', (req, res) => {
+  students.forEach( (student, i) => +student.id === +req.params.id && students.splice(i,1) );
+  res.send(students);
+});
+
 app.put('/api/data/:id', (req, res)=> {
-  students.forEach((v, i)=>{
-    if( Number(v.id) === Number(req.body.id) ){
+  students.forEach((student, i)=>{
+    if( +student.id === +req.body.id ){
       students[i].name = req.body.name;
-      if( (students[i].complete === 0 || students[i].complete === 1) && Number(req.body.complete) === 2 ){
+      if( (students[i].complete === 0 || students[i].complete === 1) && +req.body.complete === 2 ){
         students[i].rank = rank++;
       }
       students[i].complete = Number(req.body.complete);

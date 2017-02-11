@@ -14,7 +14,7 @@ import { AppRoutingModule }     from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { StudentDetailComponent } from './student-detail.component';
-import { StudentsComponent } from './students.component';
+import { StudentsComponent, DialogContent } from './students.component';
 import { StudentSearchComponent } from "./student-search.component";
 import { DashboardComponent } from "./dashboard.component";
 import { MaterialTestComponent } from './material-test.component';
@@ -28,12 +28,13 @@ import { TeacherService } from './teacher.service';
   declarations: [
     AppComponent,
     StudentDetailComponent,
-    StudentsComponent,
+    StudentsComponent, DialogContent,
     DashboardComponent,
     StudentSearchComponent,
     MaterialTestComponent,
     JoinComponent
   ],
+  entryComponents: [DialogContent],
   imports: [
     BrowserModule,
     FormsModule,

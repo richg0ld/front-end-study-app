@@ -58,31 +58,12 @@
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
-.students .yet {
+.yet {
   background-color: #a8a8a8;
 }
-.students .almost {
+.almost {
   background-color: #ffb200;
 }
-.students .complete {
+.complete {
   background-color: #05bf00;
-}
-button {
-  font-family: Arial;
-  background-color: #eee;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  cursor: hand;
-}
-button:hover {
-  background-color: #cfd8dc;
-}
-button.delete {
-  float:right;
-  margin-top: 2px;
-  margin-right: .8em;
-  background-color: gray !important;
-  color:white;
 }
