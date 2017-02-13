@@ -1,4 +1,5 @@
 import 'hammerjs';
+import 'socket.io-client';
 import './rxjs-extensions';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,6 +21,7 @@ import { DashboardComponent } from "./dashboard.component";
 import { MaterialTestComponent } from './material-test.component';
 import {JoinComponent} from "./join.component";
 
+import { SocketService } from './socket.service';
 import { StudentService } from './student.service';
 import { TeacherService } from './teacher.service';
 
@@ -44,7 +46,7 @@ import { TeacherService } from './teacher.service';
     // InMemoryWebApiModule.forRoot(InMemoryDataService),
     MaterialModule.forRoot()
   ],
-  providers: [StudentService, TeacherService],
+  providers: [SocketService, StudentService, TeacherService],
   bootstrap: [AppComponent]
 })
 

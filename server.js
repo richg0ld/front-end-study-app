@@ -3,6 +3,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 const DOMAIN = 'http://127.0.0.1:4200';
 const ROUTES = ['', '/students', '/dashboard', '/detail/:id', '/join'];
@@ -10,7 +12,6 @@ const ROUTES = ['', '/students', '/dashboard', '/detail/:id', '/join'];
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 ROUTES.forEach(route=> app.use(route, express.static(path.join(__dirname, 'dist'))) );
-
 
 // S: CORS Solution for dev
 const originsWhitelist = ROUTES.map(route=> DOMAIN + route);
@@ -79,5 +80,11 @@ app.put('/api/data/:id', (req, res)=> {
   res.send('ok');
 });
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+http.listen(3000, () => console.log('Example app listening on port 3000!'));
 
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});

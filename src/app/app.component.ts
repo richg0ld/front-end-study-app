@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 
+import {SocketService} from "./socket.service";
 import {StudentService} from "./student.service";
 import {TeacherService} from './teacher.service';
 
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
   computerIp: string; //test용
 
   constructor(
+    private socketService: SocketService,
     private studentService: StudentService,
     private teacherService: TeacherService,
     private router: Router){  }
@@ -35,6 +37,8 @@ export class AppComponent implements OnInit {
         });
       });
     });
+
+    // this.socketService.getTest();
   }
 
 }
