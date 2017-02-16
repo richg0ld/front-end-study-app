@@ -6,14 +6,14 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
-const DOMAIN = 'http://127.0.0.1:4200';
 const ROUTES = ['', '/students', '/dashboard', '/detail/:id', '/join'];
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 ROUTES.forEach(route=> app.use(route, express.static(path.join(__dirname, 'dist'))) );
 
-// S: CORS Solution for dev
+// S: CORS Solution for dev (테스트 코드가 서버에 접속 할 수 있도록 허용해주는 코드)
+const DOMAIN = 'http://127.0.0.1:4200';
 const originsWhitelist = ROUTES.map(route=> DOMAIN + route);
 console.log(originsWhitelist);
 
@@ -82,9 +82,11 @@ app.put('/api/data/:id', (req, res)=> {
 
 http.listen(3000, () => console.log('Example app listening on port 3000!'));
 
-io.on('connection', function(socket){
+io.on('connection', socket => {
+  // *****TIP*******
+  // socket.emit : 보낸온 당사자한테만 / socket.broadcast.emit : 나를 제외한 나머지 / io.emit : 모두에게
   console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
+  socket.on('join study', name => socket.broadcast.emit('join study', name));
+  socket.on('update studentStatus', () => io.emit('update studentStatus'));
+  socket.on('disconnect', () => console.log('user disconnected'));
 });

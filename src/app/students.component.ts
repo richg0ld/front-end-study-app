@@ -1,8 +1,11 @@
 import {Component, OnInit, Optional} from '@angular/core';
 import {Router} from "@angular/router";
 import {MdDialog, MdDialogRef} from '@angular/material';
+
+import {SocketService} from "./socket.service";
 import {StudentService} from "./student.service";
 import {Student} from "./student";
+import {Subscription} from "rxjs";
 
 @Component({
   moduleId: module.id,
@@ -14,10 +17,13 @@ export class StudentsComponent implements OnInit {
   students: Student[];
   selectedStudent: Student;
   lastDialogResult: string;
+  connection: Subscription;
+
 
   constructor(
     private mdDialog: MdDialog,
     private router: Router,
+    private socketService: SocketService,
     private studentService: StudentService) { }
 
   getStudents(): void {
@@ -26,19 +32,18 @@ export class StudentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStudents();
+    this.connection = this.socketService.updateStudents().subscribe(()=>this.getStudents());
   }
 
   onSelect(student: Student): void {
+
     this.selectedStudent = student;
 
     let dialogRef = this.mdDialog.open(DialogContent);
 
     dialogRef.componentInstance.id = student.id;
     dialogRef.componentInstance.name = student.name;
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.lastDialogResult = result;
-    })
+    dialogRef.afterClosed().subscribe(result => this.lastDialogResult = result);
   }
 
   gotoDetail(): void {
@@ -58,9 +63,7 @@ export class StudentsComponent implements OnInit {
 @Component({
   template: `
     <div>
-      <h2>
-        {{name | uppercase}} is my student
-      </h2>
+      <h2>{{name | uppercase}}!</h2>
       <button md-button (click)="gotoDetail()">View Details</button>
     </div>
   `,

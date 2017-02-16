@@ -1,3 +1,9 @@
 .join-input-section{
   margin:10px 0;
 }
+.join-input-section md-radio-group md-radio-button:first-child{
+  margin-left:0;
+}
+.join-input-section md-radio-group md-radio-button{
+  margin-left:20px;
+}

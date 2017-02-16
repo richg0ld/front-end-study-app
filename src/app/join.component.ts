@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
+import {SocketService} from "./socket.service";
 import {StudentService} from "./student.service";
 import {TeacherService} from "./teacher.service";
 
@@ -15,6 +16,7 @@ export class JoinComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private socketService: SocketService,
     private studentService: StudentService,
     private teacherService: TeacherService){  }
 
@@ -30,6 +32,9 @@ export class JoinComponent implements OnInit {
       return;
     }
     this.studentService.create(name, this.ip)
-    .then(data => this.router.navigate(['/detail', data.id]) );
+    .then(data =>{
+      this.socketService.joinStudy(data.name);
+      this.router.navigate(['/detail', data.id]);
+    });
   }
 }
