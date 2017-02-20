@@ -20,6 +20,6 @@
 
   <section class="join-input-section">
     <button md-raised-button color="primary" (click)="save()">Save</button>
-    <button *ngIf="areYouTeacher" md-raised-button (click)="goBack()">Back</button>
+    <button *ngIf="isTeacher" md-raised-button (click)="goBack()">Back</button>
   </section>
 </div>

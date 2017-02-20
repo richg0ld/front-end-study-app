@@ -4,7 +4,7 @@
   <span class="app-toolbar-filler"></span>
   <button md-button>{{computerIp}}</button>
 </md-toolbar>
-<nav md-tab-nav-bar  *ngIf="areYouTeacher">
+<nav md-tab-nav-bar  *ngIf="isTeacher">
   <a md-tab-link
      routerLink="/dashboard"
      routerLinkActive #rla="routerLinkActive"

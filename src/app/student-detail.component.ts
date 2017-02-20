@@ -8,7 +8,7 @@ import {SocketService} from "./socket.service";
 import {StudentService} from './student.service';
 
 import {Student} from './student';
-import {areYouTeacher} from "./app.globals";
+import {isTeacher} from "./app.globals";
 
 @Component({
   moduleId: module.id,
@@ -19,7 +19,7 @@ import {areYouTeacher} from "./app.globals";
 export class StudentDetailComponent implements OnInit {
 
   student: Student;
-  areYouTeacher: boolean;
+  isTeacher: boolean;
 
   constructor(
     private socketService: SocketService,
@@ -32,7 +32,7 @@ export class StudentDetailComponent implements OnInit {
     this.route.params
       .switchMap((params: Params) => this.studentService.getStudent(+params['id']))
       .subscribe(student => this.student = student);
-    this.areYouTeacher = areYouTeacher;
+    this.isTeacher = isTeacher;
   }
 
   goBack(): void {

@@ -24,6 +24,10 @@ export class JoinComponent implements OnInit {
     this.teacherService.getIp().then(ip => this.ip = ip);
   }
 
+  join(){
+
+  }
+
   add(name: string): void {
     name = name.trim();
     if(!name || !this.ip) { return; }
@@ -32,9 +36,9 @@ export class JoinComponent implements OnInit {
       return;
     }
     this.studentService.create(name, this.ip)
-    .then(data =>{
+    .then(data => {
       this.socketService.joinStudy(data.name);
-      this.router.navigate(['/detail', data.id]);
+      return this.router.navigate(['/detail', data.id]);
     });
   }
 }

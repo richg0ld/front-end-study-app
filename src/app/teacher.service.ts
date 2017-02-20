@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import { Teacher } from './teacher';
-import {serverUrl} from "./app.globals";
+import {SERVER_URL} from "./app.globals";
 
 @Injectable()
 export class TeacherService {
 
-  private studentsUrl = `${serverUrl}/api/data`;
+  private studentsUrl = `${SERVER_URL}/api/data`;
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http){  }

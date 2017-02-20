@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import * as io from "socket.io-client";
 
-import {serverUrl} from "./app.globals";
+import {SERVER_URL} from "./app.globals";
 
 @Injectable()
 export class SocketService {
 
-  private url = serverUrl;
+  private url = SERVER_URL;
   private socket: SocketIOClient.Socket;
 
   joinStudy(str: string){
@@ -19,7 +19,7 @@ export class SocketService {
   }
 
   getPush(){
-    this.socket = io.connect(serverUrl);
+    this.socket = io.connect(SERVER_URL);
     return new Observable(observer => {
       this.socket = io.connect(this.url);
       this.socket.on('join study',str => observer.next(str) );

@@ -5,3 +5,27 @@
   </md-input-container>
   <button md-raised-button color="accent" (click)="add(studentName.value); studentName.value=''">Add</button>
 </div>
+
+<div >
+  <h2>Login Form</h2>
+  <!--<form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)">-->
+    <!--<div class="form-group" [ngClass]="{'has-error':!loginForm.controls['email'].valid && loginForm.controls['email'].touched}">-->
+      <!--<label>Email:</label>-->
+      <!--<input class="form-control" type="text" placeholder="John@doe.com" [formControl]="loginForm.controls['email']">-->
+      <!--<div *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched" class="alert alert-danger">You must add an email.</div>-->
+    <!--</div>-->
+    <!--<div class="form-group" [ngClass]="{'has-error':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}">-->
+      <!--<label>Password:</label>-->
+      <!--<input class="form-control" type="password" placeholder="Password" [formControl]="loginForm.controls['password']">-->
+      <!--<div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class="alert alert-danger">You must add a password.</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>-->
+    <!--</div>-->
+  <!--</form>-->
+<!--</div>-->
+<!--<div class="jumbotron text-center" *ngIf="authenticated">-->
+  <!--<img src="{{profile.picture}}" />-->
+  <!--<h2>Welcome, {{profile.email}}</h2>-->
+  <!--<a (click)="logout()">Logout</a>-->
+</div>
